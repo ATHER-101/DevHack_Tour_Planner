@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap');
+
+.bg-container {
+  background-image: url("page1bg.jpg");
+  height: 100vh;
+  background-size: cover;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  position: relative;
+}
+.tourism-card {
+  text-align: center;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  padding: 5px;
+  position: absolute;
+  text-align: left;
+  top: 30%;
+  right:30%;
+  left:10%;
+  width: 60vw;
+  height: 40vh;
+
+}
+.button {
+  color: white;
+  background-color: #25b1cc;
+  width: 30%;
+  height: 72px;
+  font-size:19px;
+  margin-top:40px;
+  border-width: 0px;
+  border-radius: 20px;
+}
+.main-heading {
+    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Poppins',sans-serif;
+    font-weight: bold;
+    font-size:90px;
+}
+.paragraph {
+  font-family: "Roboto";
+}

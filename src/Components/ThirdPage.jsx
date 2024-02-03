@@ -1,9 +1,9 @@
 import React from 'react'
 import CorouselCard from './CorouselCard'
-
+import "../css/3.css"
 function ThirdPage() {
   return (
-    <div>
+    <div className ="back">
       Third page
       <CorouselCard/>
     </div>

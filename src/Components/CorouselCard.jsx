@@ -1,8 +1,8 @@
 import React from 'react'
-
+import "../css/corousel.css"
 function CorouselCard() {
   return (
-    <div className="detailed-view-card-container" style={{"width":"400px"}}>
+    <div className="detailed-view-card-container" style={{"width":"400px","border-radius":"20px"}}>
         <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
           <ol className="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>

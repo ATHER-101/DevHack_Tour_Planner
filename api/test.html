@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Top 10 Tourist Attractions</title>
+  <style>
+    #attractions-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .attraction {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Top 10 Tourist Attractions</h1>
+  <ul id="attractions-list"></ul>
+
+  <script>
+    // Replace 'YOUR_API_KEY' with your actual Google Maps API key
+    const apiKey = 'AIzaSyC0qS-f1_jDGH8JLOU2p7788DjJ1KPJ-lg';
+    const city = 'Goa'; // Replace with the desired city name
+
+    // Fetch top tourist attractions based on user ratings
+    async function fetchTopAttractions() {
+      const response = await fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=tourist+attractions+in+${city}&key=${apiKey}`);
+      const data = await response.json();
+
+      if (data.status === 'OK') {
+        const attractions = data.results.slice(0, 10);
+        displayAttractions(attractions);
+      } else {
+        console.error('Error fetching attractions:', data.status);
+      }
+    }
+
+    // Display attractions on the webpage
+    function displayAttractions(attractions) {
+      const attractionsList = document.getElementById('attractions-list');
+
+      attractions.forEach((attraction, index) => {
+        const listItem = document.createElement('li');
+        listItem.classList.add('attraction');
+
+        const attractionName = document.createElement('strong');
+        attractionName.textContent = `${index + 1}. ${attraction.name}`;
+
+        const rating = document.createElement('span');
+        rating.textContent = `Rating: ${attraction.rating || 'N/A'}`;
+
+        listItem.appendChild(attractionName);
+        listItem.appendChild(document.createElement('br'));
+        listItem.appendChild(rating);
+
+        attractionsList.appendChild(listItem);
+      });
+    }
+
+    // Initiate the fetching process
+    fetchTopAttractions();
+  </script>
+</body>
+</html>

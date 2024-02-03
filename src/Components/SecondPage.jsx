@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import img1 from "../css/img2.jpg";
+import img2 from "../css/img3.jpg";
+import "../css/2.css"
 
 function SecondPage() {
   const [place, setPlace] = useState("");
@@ -61,6 +64,9 @@ function SecondPage() {
         <div type='number' className="form-control col-4 text-center" placeholder="Recipient's username" aria-label="Recipient's username with two button addons" id='exampleFormControlInput2' style={{ "width": "30px" }} >{days}</div>
         <button className="btn btn-outline-secondary" style={{ "width": "40px" }} type="button" onClick={addDays}>+</button>
       </div>
+
+      <img src={img1} alt="hgfg" className='img1' />
+      <img src={img2} alt="hgfg" className='img2' />
 
     </div>
 

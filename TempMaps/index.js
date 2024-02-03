@@ -117,8 +117,18 @@ function onPlaceChanged() {
 function restaurant_search() {
   const search = { 
     bounds: map.getBounds(),
-    types: [""]
-  }
+    types: ["restaurant"]
+  };
+  // Return result, result.rating
+}
+
+// Search for tourist attraction in the selected city, within the viewport of the map.
+function attraction_search() {
+  const search = { 
+    bounds: map.getBounds(),
+    types: ["tourist_attraction"]
+  };
+  // Return result.name, result.rating
 }
 
 // Search for hotels in the selected city, within the viewport of the map.

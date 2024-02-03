@@ -4,7 +4,6 @@ import "../css/3.css"
 function ThirdPage() {
   return (
     <div className ="back">
-      Third page
       <CorouselCard/>
     </div>
   )

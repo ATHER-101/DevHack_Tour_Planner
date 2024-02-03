@@ -4,8 +4,8 @@
   background-image: url("476126.jpg");
   height: 100vh;
   background-size: cover;
-  filter: blur(5px);
-  -webkit-filter: blur(5px);
+  /* filter: blur(5px);
+  -webkit-filter: blur(5px); */
   position: relative;
 }
 .tourism-card {
@@ -28,7 +28,8 @@
   width: 30%;
   height: 72px;
   font-size:19px;
-  margin-top:40px;
+  /* margin-top:70px; */
+  padding:20px;
   border-width: 0px;
   border-radius: 20px;
 }
@@ -40,4 +41,5 @@
 }
 .paragraph {
   font-family: "Roboto";
+  margin-bottom: 20px;
 }

@@ -1,10 +1,10 @@
 import React from 'react';
-import a from '../PathFind';
+import Path from './Path';
 
 function LastPage() {
   return (
-    <div>
-      Last Page {a}
+    <div className='m-5'>
+      <Path/>
     </div>
   )
 }

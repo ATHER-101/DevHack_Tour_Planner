@@ -128,7 +128,7 @@ function attraction_search() {
     bounds: map.getBounds(),
     types: ["tourist_attraction"]
   };
-  // Return result.name, result.rating
+  // Return result.name, result.rating, result.photo.photo_reference
 }
 
 // Search for hotels in the selected city, within the viewport of the map.

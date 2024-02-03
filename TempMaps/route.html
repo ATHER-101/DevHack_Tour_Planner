@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Route Matrix Example</title>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+</head>
+<body>
+  <script>
+    const apiKey = 'AIzaSyC0qS-f1_jDGH8JLOU2p7788DjJ1KPJ-lg';
+
+    const places = ['Hyderabad', 'Bangalore', 'Delhi', 'Kolkata']; // Replace with actual place names or addresses
+    const routeMatrix = [];
+
+    function calculateRouteMatrix() {
+      for (let i = 0; i < places.length; i++) {
+        for (let j = 0; j < places.length; j++) {
+          if (i !== j) {
+            calculateRoute(places[i], places[j]);
+          }
+        }
+      }
+    }
+
+    function calculateRoute(origin, destination) {
+      const directionsService = new google.maps.DirectionsService();
+
+      const request = {
+        origin: origin,
+        destination: destination,
+        travelMode: 'DRIVING', // or 'WALKING' or 'TRANSIT' depending on your preference
+      };
+
+      directionsService.route(request, function(result, status) {
+        if (status === 'OK') {
+          const distance = result.routes[0].legs[0].distance.text;
+          routeMatrix.push({ origin, destination, distance });
+          
+          if (routeMatrix.length === places.length * (places.length - 1)) {
+            // All routes have been calculated
+            displayRouteMatrix();
+          }
+        } else {
+          console.error(`Error calculating route from ${origin} to ${destination}: ${status}`);
+        }
+      });
+    }
+
+    function displayRouteMatrix() {
+      console.log('Route Matrix:', routeMatrix);
+    }
+
+    calculateRouteMatrix();
+  </script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 import React from 'react'
 import '../css/4.css';
 
-function Path() {
+function Path(props) {
   return (
     <div className='itinerary-block'>
           <div className="itinerary-item__point-icon">
@@ -11,13 +11,13 @@ function Path() {
             </svg>
           </div>
           <div className='heading'>
-            <h3>gjcjgc</h3>
+            <h3>{props.place}</h3>
           </div>
           <br />
           <div className="itinerary-line"></div>
-          <div className='para'>
+          {/* <div className='para'>
             <p className='mb-5'>dxfchgcjgcjgvkhv.kgu.kh.kgc.jgcyk</p>
-          </div>
+          </div> */}
         </div>
   )
 }

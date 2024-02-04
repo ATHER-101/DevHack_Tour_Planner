@@ -1,63 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "../css/corousel.css"
-function CorouselCard() {
+import img from '../css/img1.jpg'
+
+function CorouselCard(props) {
+  const [selected, setSelected] = useState(false);
+
+  const selectionFunc = ()=>{
+    if(selected==true){
+      setSelected(false);
+      document.getElementById('but').innerHTML = 'Wanna go!';
+    }else{
+      setSelected(true);
+      document.getElementById('but').innerHTML = 'Dont wanna go!';
+    }
+  }
+
   return (
-    <div className="detailed-view-card-container" style={{"width":"400px","border-radius":"20px"}}>
-      
-      <label for="card">
-        <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
-          <ol className="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          </ol>
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <img
-                src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-static-website/tajmahal-c1-img.png"
-                className="d-block w-100"
-                alt="..."
-              />
-            </div>
-            <div className="carousel-item">
-              <img
-                src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-static-website/tajmahal-c2-img.png"
-                className="d-block w-100"
-                alt="..."
-              />
-            </div>
-            <div className="carousel-item">
-              <img
-                src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-static-website/tajmahal-c3-img.png"
-                className="d-block w-100"
-                alt="..."
-              />
-            </div>
-          </div>
-          <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span className="sr-only">Previous</span>
-          </a>
-          <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-            <span className="sr-only">Next</span>
-          </a>
+    <div className="card" style={{"width": "18rem"}}>
+      {/* <img src={img} className="card-img-top" alt="..."/> */}
+        <div className="card-body">
+          <h5 className="card-title">{props.place}</h5>
+          <p className="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi maxime enim, quaerat excepturi aperiam, quidem beatae a pariatur exercitationem necessitatibus earum? Nesciunt unde possimus similique culpa eligendi, sint et modi.</p>
+          <div className="btn btn-primary" onClick={selectionFunc} id='but'>Wanna go!</div>
         </div>
-        <div className="detailed-view-card-text-container">
-          <h1 className="detailed-view-card-heading">Taj Mahal</h1>
-          <p className="detailed-view-card-description">
-            The Taj Mahal is considered to be the greatest architectural
-            achievement in the whole range of Indo-Islamic architecture. Its
-            recognised architectonic beauty has a rhythmic combination of solids
-            and voids, concave and convex and light shadow; such as arches and
-            domes further increases the aesthetic aspect. Not a piece of
-            architecture, as other buildings are, but the proud passions of an
-            emperor's love wrought in living stones.
-          </p>
-        </div>
-        </label>
-        <input type="checkbox" name="place" id="card"/>
-      </div>
+    </div>
   )
 }
 

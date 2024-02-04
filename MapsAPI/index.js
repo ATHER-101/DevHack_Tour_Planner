@@ -103,8 +103,6 @@ function initMap() {
     .addEventListener("change", setAutocompleteCountry);
 }
 
-let final = []
-
 // When the user selects a city, get the place details for the city and
 // zoom the map in on the city.
 function onPlaceChanged() {
@@ -124,6 +122,7 @@ function onPlaceChanged() {
       for (let j = 0; j < size; j++) {
         const index = i * size + j;
         row.push(random[index]);
+        console.log(row[j])
       }
       twoDArray.push(row);
     }
@@ -131,7 +130,6 @@ function onPlaceChanged() {
     console.log(twoDArray);
     console.log(random)
     d = random[1]
-    console.log(d)
   } else {
     document.getElementById("autocomplete").placeholder = "Enter a city";
   }
@@ -158,6 +156,7 @@ function search() {
           hotel_search[results[i].name] = results[i].rating
         }
       }
+      console.log(hotel_search)
     }
   });
 }
@@ -184,6 +183,7 @@ function search2() {
           restaurant_search[results[i].name] = results[i].rating
         }
       }
+      console.log(restaurant_search)
     }
   });
 }
@@ -212,6 +212,7 @@ function search3() {
           distanceCalculation(results[j].geometry.location, results[k].geometry.location)
         }
       }
+      console.log(attractions_search)
     }
   });
 }
@@ -235,6 +236,7 @@ function distanceCalculation(results, origin) {
       totalDistance += distance;
     }
     d = totalDistance
+    console.log('Total distance: ' + totalDistance);
     random[a] = d
     a = a+1
   });

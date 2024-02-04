@@ -10,6 +10,10 @@ let places;
 let infoWindow;
 let markers = [];
 let autocomplete;
+var d = 0;
+var a = 0;
+var final = 0;
+const random = {}
 const countryRestrict = { country: "us" };
 const MARKER_PATH =
   "https://developers.google.com/maps/documentation/javascript/images/marker_green";
@@ -99,6 +103,8 @@ function initMap() {
     .addEventListener("change", setAutocompleteCountry);
 }
 
+let final = []
+
 // When the user selects a city, get the place details for the city and
 // zoom the map in on the city.
 function onPlaceChanged() {
@@ -108,6 +114,24 @@ function onPlaceChanged() {
     map.panTo(place.geometry.location);
     map.setZoom(15);
     search();
+    search2();
+    search3();
+    const size = 10;
+    const twoDArray = [];
+
+    for (let i = 0; i < size; i++) {
+      const row = [];
+      for (let j = 0; j < size; j++) {
+        const index = i * size + j;
+        row.push(random[index]);
+      }
+      twoDArray.push(row);
+    }
+
+    console.log(twoDArray);
+    console.log(random)
+    d = random[1]
+    console.log(d)
   } else {
     document.getElementById("autocomplete").placeholder = "Enter a city";
   }
@@ -121,6 +145,7 @@ function search() {
   };
 
   let hotel_search = {}
+
   places.nearbySearch(search, (results, status, pagination) => {
     if (status === google.maps.places.PlacesServiceStatus.OK && results) {
       clearResults();
@@ -129,33 +154,89 @@ function search() {
       // Create a marker for each hotel found, and
       // assign a letter of the alphabetic to each marker icon.
       for (let i = 0; i < results.length; i++) {
-        hotel_search[results[i].name] = results[i].rating
+        if (results[i].rating > 3.5) {
+          hotel_search[results[i].name] = results[i].rating
+        }
       }
-      console.log(hotel_search);
-      distanceCalculation(results, map.center);
+    }
+  });
+}
+
+
+// Search for restaurant in the selected city, within the viewport of the map.
+function search2() {
+  const search = {
+    bounds: map.getBounds(),
+    types: ["restaurant"],
+  };
+
+  let restaurant_search = {}
+
+  places.nearbySearch(search, (results, status, pagination) => {
+    if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+      clearResults();
+      clearMarkers();
+
+      // Create a marker for each hotel found, and
+      // assign a letter of the alphabetic to each marker icon
+      for (let i = 0; i < 5; i++) {
+        if (results[i].rating > 3.5) {
+          restaurant_search[results[i].name] = results[i].rating
+        }
+      }
+    }
+  });
+}
+
+// Search for attractions in the selected city, within the viewport of the map.
+function search3() {
+  const search = {
+    bounds: map.getBounds(),
+    types: ["tourist_attraction"],
+  };
+
+  let attractions_search = {}
+
+  places.nearbySearch(search, (results, status, pagination) => {
+    if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+      clearResults();
+      clearMarkers();
+
+      // Create a marker for each hotel found, and
+      // assign a letter of the alphabetic to each marker icon.
+      for (let i = 0; i < 10; i++) {
+        attractions_search[results[i].name] = results[i].rating
+      }
+      for (let j = 0; j < 10; j++) {
+        for (let k = 0; k < 10; k++) {
+          distanceCalculation(results[j].geometry.location, results[k].geometry.location)
+        }
+      }
     }
   });
 }
 
 function distanceCalculation(results, origin) {
-  // const origin = new google.maps.LatLng(37.76244, -122.43176);
-  let requestParms =       {
+  const destinations = [];
+  destinations.push(results);
+
+  let requestParms = {
     origins: [origin],
-    destinations: [results[0].geometry.location, results[1].geometry.location],
+    destinations,
     travelMode: 'DRIVING'
   }
 
   var distanceMatrixService = new google.maps.DistanceMatrixService();
   distanceMatrixService.getDistanceMatrix(requestParms, (distanceResult) => {
-    console.log(distanceResult);
     let totalDistance = 0;
     for (let i = 0; i < distanceResult.rows[0].elements.length; i++) {
       const element = distanceResult.rows[0].elements[i];
       const distance = element.distance.value;
       totalDistance += distance;
-      console.log('Distance to ' + results[i].name + ': ', distance);
     }
-    console.log('Total distance: ' + totalDistance);
+    d = totalDistance
+    random[a] = d
+    a = a+1
   });
 }
 
